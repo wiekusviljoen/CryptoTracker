@@ -1,6 +1,6 @@
 import React from "react";
-import CoinItem from "./src/components/CoinItem";
-import cryptocurrencies from "./assets/data/cryptocurrencies.json";
+import CoinItem from "../../components/CoinItem";
+import cryptocurrencies from "../../../assets/data/cryptocurrencies.json";
 import { FlatList } from "react-native";
 
 const HomeScreen = () => {
