@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
-import CoinItem from "./src/components/coinItem";
+import CoinItem from "./src/components/CoinItem";
 import cryptocurrencies from "./assets/data/cryptocurrencies.json";
 
 export default function App() {
