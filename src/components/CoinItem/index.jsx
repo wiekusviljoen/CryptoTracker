@@ -3,12 +3,21 @@ import { Text, View, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
 
-const CoinItem = (props) => {
+const CoinItem = ({ marketCoin }) => {
+  const {
+    name,
+    current_price,
+    market_cap_rank,
+    price_change_percentage_24h,
+    symbol,
+    market_cap,
+    image,
+  } = marketCoin;
   return (
     <View style={styles.coinContainer}>
       <Image
         source={{
-          uri: "https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579",
+          uri: image,
         }}
         style={{
           height: 50,
