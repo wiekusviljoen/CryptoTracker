@@ -28,19 +28,21 @@ const CoinItem = ({ marketCoin }) => {
       />
 
       <View>
-        <Text style={styles.title}>Bitcoin</Text>
+        <Text style={styles.title}>{name}</Text>
         <View style={{ flexDirection: "row" }}>
           <View style={styles.rankContainter}>
-            <Text style={styles.rank}>1</Text>
+            <Text style={styles.rank}>{market_cap_rank}</Text>
           </View>
-          <Text style={styles.Text}>BTC</Text>
+          <Text style={styles.Text}>{symbol.toUpperCase()}</Text>
           <AntDesign
             name="caretdown"
             size={12}
             color="red"
             style={{ alignSelf: "center", marginRight: 5 }}
           />
-          <Text style={styles.Text}>0.63%</Text>
+          <Text style={styles.Text}>
+            {price_change_percentage_24h.toFixed(2)}%
+          </Text>
         </View>
       </View>
       <View style={{ marginLeft: "auto" }}>
