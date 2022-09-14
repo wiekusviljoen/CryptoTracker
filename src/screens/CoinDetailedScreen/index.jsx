@@ -1,12 +1,37 @@
-import React from "react";
-import { View, Text } from "react-native";
-import Coin from "../../../assets/data/crypto.json";
+import React, { useEffect, useState } from "react";
+import { View, Text, ActivityIndicator } from "react-native";
 import CoinDetailedHeader from "./components/CoinDetailedHeader";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
+import { getDetailedCoinData } from "../../services/requests";
 
 const CoinDetailedScreen = () => {
+  const [coin, setCoin] = useState(null);
+
+  const route = useRoute();
+
+  const {
+    params: { coinId },
+  } = route;
+
+  const [loading, setLoading] = useState(false);
+
+  const fetchCoinData = async () => {
+    setLoading(true);
+    const fetchCoinData = await getDetailedCoinData(coinId);
+    setCoin(fetchCoinData);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchCoinData();
+  }, []);
+
+  if (loading || !coin) {
+    return <ActivityIndicator size="large" />;
+  }
+
   const {
     image: { small },
     name,
@@ -16,13 +41,7 @@ const CoinDetailedScreen = () => {
       current_price,
       price_change_percentage_24h,
     },
-  } = Coin;
-
-  const route = useRoute();
-
-  const {
-    params: { coinId },
-  } = route;
+  } = coin;
 
   const percentageColor =
     price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
@@ -41,7 +60,7 @@ const CoinDetailedScreen = () => {
         </View>
         <View
           style={{
-            backgroundColor: "red",
+            backgroundColor: percentageColor,
             padding: 5,
             borderRadius: 5,
             flexDirection: "row",
