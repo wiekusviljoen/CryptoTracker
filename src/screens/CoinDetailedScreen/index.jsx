@@ -4,6 +4,7 @@ import Coin from "../../../assets/data/crypto.json";
 import CoinDetailedHeader from "./components/CoinDetailedHeader";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
+import { useRoute } from "@react-navigation/native";
 
 const CoinDetailedScreen = () => {
   const {
@@ -16,6 +17,12 @@ const CoinDetailedScreen = () => {
       price_change_percentage_24h,
     },
   } = Coin;
+
+  const route = useRoute();
+
+  const {
+    params: { coinId },
+  } = route;
 
   const percentageColor =
     price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
